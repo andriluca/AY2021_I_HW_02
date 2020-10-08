@@ -10,15 +10,24 @@
  * ========================================
 */
 #include "project.h"
+#include "colors.h"
+#include "RGBLedDriver.h"
+#define DELAY 2000
 
 int main(void)
 {
-    CyGlobalIntEnable; /* Enable global interrupts. */
-
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-
+    CyGlobalIntEnable;
+    
+    RGBLed_Start();
+    
+    //RGBLed_WriteColor(ZERO);
+    //CyDelay(DELAY);
+    //RGBLed_Stop();
+    
     for(;;)
     {
+        RGBLed_WriteColor(RED);
+        CyDelay(DELAY);
         /* Place your application code here. */
     }
 }
