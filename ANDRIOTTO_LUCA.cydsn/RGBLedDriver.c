@@ -1,11 +1,6 @@
 /* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
+ * 
+ * Andriotto Luca, Assignment #2
  *
  * ========================================
 */
@@ -45,5 +40,3 @@ void RGBLed_WriteRed(uint8_t red){
 void RGBLed_WriteGreen(uint8_t green){
     PWM_GREEN_WriteCompare(green);
 }
-
-/* [] END OF FILE */

@@ -1,11 +1,6 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
+ * Andriotto Luca, Assignment #2
  *
  * ========================================
 */
@@ -14,17 +9,15 @@
 #include "RGBLedDriver.h"
 #include "InterruptRoutine.h"
 
-int main(void)
-{
+int main(void){
     CyGlobalIntEnable;
-    state=0;
-    RGBLed_Start();
-    isr_SW_StartEx(SW_ISR);
+    state=INITIALSTATE;     // INIZIALIZZAZIONE VARIABILE GLOBALE DI STATO
+    RGBLed_Start();         // INIZIALIZZAZIONE PWM LED
+    isr_SW_StartEx(SW_ISR); // INIZIALIZZAZIONE ISR SU SWITCH
     
     for(;;){
+        // RIPETIZIONE PATTERN SCELTO
         RGBLed_WriteColor(color[state]);
-        CyDelay(DELAY);    
+        CyDelay(PERIOD);    
     }
 }
-
-/* [] END OF FILE */

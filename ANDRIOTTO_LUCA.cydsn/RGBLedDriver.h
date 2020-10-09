@@ -1,29 +1,25 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
+ * Andriotto Luca, Assignment #2
  *
  * ========================================
 */
 #ifndef __RGB_LED_DRIVER_H
     #define __RGB_LED_DRIVER_H
-    #define DELAY 2000
+    #define PERIOD 2000     // PERIODO DEI PWM.
+    #define INITIALSTATE 0  // STATO DI PARTENZA
     
-    #include "cytypes.h" // serve per definire il tipo di dato uint8_t
+    #include "cytypes.h"
     
     
     // STRUCT PER IL COLORE
     typedef struct {
         uint8_t red;
         uint8_t green;
-        uint8 cmpmoder;
-        uint8 cmpmodeg;
-        uint8_t periodR;
-        uint8_t periodG;
+        uint8 cmpmoder;     // TIPO DI ONDA QUADRA (RISING/FALLING EDGE) PER RED CHANNEL
+        uint8 cmpmodeg;     // TIPO DI ONDA QUADRA PER GREEN CHANNEL
+        uint8_t periodR;    // PERIODO ONDA QUADRA PER RED CHANNEL
+        uint8_t periodG;    // PERIODO ONDA QUADRA PER GREEN CHANNEL
     } Color;
     
     
@@ -35,4 +31,3 @@
     void RGBLed_WriteColor(Color c);
     uint8_t state;
 #endif
-/* [] END OF FILE */
