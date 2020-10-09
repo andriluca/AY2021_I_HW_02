@@ -11,6 +11,7 @@
 */
 #ifndef __RGB_LED_DRIVER_H
     #define __RGB_LED_DRIVER_H
+    #define DELAY 2000
     
     #include "cytypes.h" // serve per definire il tipo di dato uint8_t
     
@@ -19,6 +20,10 @@
     typedef struct {
         uint8_t red;
         uint8_t green;
+        uint8 cmpmoder;
+        uint8 cmpmodeg;
+        uint8_t periodR;
+        uint8_t periodG;
     } Color;
     
     
@@ -28,5 +33,6 @@
     void RGBLed_Stop();
     
     void RGBLed_WriteColor(Color c);
+    uint8_t state;
 #endif
 /* [] END OF FILE */

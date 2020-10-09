@@ -9,22 +9,12 @@
  *
  * ========================================
 */
-#include "project.h"
-#include "colors.h"
-#include "RGBLedDriver.h"
-#include "InterruptRoutine.h"
-
-int main(void)
-{
-    CyGlobalIntEnable;
-    state=0;
-    RGBLed_Start();
-    isr_SW_StartEx(SW_ISR);
+#ifndef __INTERRUPT_ROUTINE_H
+    #define __INTERRUPT_ROUTINE_H
+    #include "project.h"
     
-    for(;;){
-        RGBLed_WriteColor(color[state]);
-        CyDelay(DELAY);    
-    }
-}
+    CY_ISR_PROTO(SW_ISR);
+
+#endif
 
 /* [] END OF FILE */

@@ -9,22 +9,14 @@
  *
  * ========================================
 */
-#include "project.h"
-#include "colors.h"
 #include "RGBLedDriver.h"
 #include "InterruptRoutine.h"
 
-int main(void)
-{
-    CyGlobalIntEnable;
-    state=0;
-    RGBLed_Start();
-    isr_SW_StartEx(SW_ISR);
-    
-    for(;;){
-        RGBLed_WriteColor(color[state]);
-        CyDelay(DELAY);    
-    }
+CY_ISR_PROTO(SW_ISR){
+    // AGGIORNO LO STATO IN MANIERA CIRCOLARE
+    state=(state+1)%7;
 }
+
+
 
 /* [] END OF FILE */
