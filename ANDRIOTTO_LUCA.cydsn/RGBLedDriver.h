@@ -6,8 +6,9 @@
 */
 #ifndef __RGB_LED_DRIVER_H
     #define __RGB_LED_DRIVER_H
-    #define PERIOD 2000     // PERIODO DEI PWM.
-    #define INITIALSTATE 0  // STATO DI PARTENZA
+    #define INITIALSTATE          0  // STATO DI PARTENZA
+    #define PWMPERIOD           255  // NUMERO DI BIT DEL PWM
+    #define PWMCLK              127  // CLOCK DEI PWM
     
     #include "cytypes.h"
     
@@ -29,5 +30,6 @@
     void RGBLed_Stop();
     
     void RGBLed_WriteColor(Color c);
-    uint8_t state;
+    uint8_t state,isPeriodChanged;
+    uint16_t period;
 #endif

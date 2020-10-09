@@ -9,7 +9,7 @@
 
 static void RGBLed_WriteRed(uint8_t red);
 static void RGBLed_WriteGreen(uint8_t green);
-
+static void period_Change(Color c);
 
 void RGBLed_Start(){
     PWM_RED_Start();
@@ -31,6 +31,8 @@ void RGBLed_WriteColor(Color c){
     // IMPOSTO IL DUTY CYCLE
     RGBLed_WriteRed(c.red);
     RGBLed_WriteGreen(c.green);
+    // IMPOSTA IL DELAY
+    period_Change(c);
 }
 
 void RGBLed_WriteRed(uint8_t red){
@@ -39,4 +41,11 @@ void RGBLed_WriteRed(uint8_t red){
 
 void RGBLed_WriteGreen(uint8_t green){
     PWM_GREEN_WriteCompare(green);
+}
+
+void period_Change(Color c){
+    // CAMBIA DINAMICAMENTE IL DELAY IN BASE ALLO STATO.
+    if(state&&!isPeriodChanged) period=250;        // SE SPENTO -> DELAY RIDOTTO
+    else period=((float)c.periodR/PWMCLK)*1000;    // FORMULA PER CALCOLARE IL DELAY
+    isPeriodChanged=1;
 }

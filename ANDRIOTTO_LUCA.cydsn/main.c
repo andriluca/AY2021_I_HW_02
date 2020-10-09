@@ -18,6 +18,6 @@ int main(void){
     for(;;){
         // RIPETIZIONE PATTERN SCELTO
         RGBLed_WriteColor(color[state]);
-        CyDelay(PERIOD);    
+        CyDelay(period);    
     }
 }
