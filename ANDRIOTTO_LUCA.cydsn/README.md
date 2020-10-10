@@ -1,14 +1,14 @@
 # Assignment \#2
------------------
 
 Il prototipo del dispositivo, mediante la pressione del pulsante built-in, commuta sette diversi stati (o color pattern). 
 
 ## Pin
 
+- Built-in
+	- 2.2 → Momentary switch.
 - LED RGB:
-	- 2.6 $\rightarrow$ GREEN CHANNEL.
-	- 2.6 $\rightarrow$ RED CHANNEL.
-- Built-in Switch: 2.2.
+	- 2.6 → GREEN CHANNEL.
+	- 2.7 → RED CHANNEL.
 
 ## Color Pattern
 
@@ -20,7 +20,7 @@ Il prototipo del dispositivo, mediante la pressione del pulsante built-in, commu
 1. OFF, Green, Orange - Ciclico
 1. Red, Orange, OFF, Green - Ciclico
 
-NB: Utilizzando la configurazione riportata nello schematico il colore Orange è poco visibile. L'impiego di due resistenze da 330$\Omega$, posizionate rispettivamente tra catodo di ciascun channel e pwm di quel channel, risolve questo problema, ottenendo il colore Yellow al posto dell'Orange.
+_NB_: Utilizzando la configurazione riportata nello schematico il colore Orange è poco visibile. L'impiego di due resistenze da 330Ω, posizionate rispettivamente tra catodo di ciascun channel e pwm di quel channel, risolve questo problema, ottenendo il colore Yellow al posto dell'Orange.
 
 ## ISR: Pressione del pulsante integrato
 
@@ -35,9 +35,9 @@ La gestione dei colori è stata la parte più complessa da realizzare.
 Sono stati utilizzati due PWM connessi, rispettivamente, ai due catodi del LED RGB.
 La modulazione delle onde quadre che questi devono generare ha tenuto conto delle seguenti considerazioni:
 
-- Periodo: in generale ogni stato sopra elencato possiede due componenti con periodi indipendenti. In particolar modo mi riferisco all'ultimo stato in cui si ha il RED CHANNEL a periodo T e duty cycle del 50% e il GREEN CHANNEL con periodo T/2 e duty cycle del 50%. Non ci fosse stata questa indipendenza tra i due stati avrei potuto addirittura utilizzare un solo PWM. La gestione del periodo è mediata dalla procedura "PWM\_WritePeriod()".
-- Seconda parte dell'onda quadra: Determina il duty cycle dell'onda quadra generata in ciascun channel. La gestione del duty cycle è mediata dalla procedura "PWM\_WriteCompare".
-- Tipologia di onda quadra: in alcuni casi lo stato iniziale è HIGH, in altri è LOW. La gestione del tipo è mediata dalla procedura "PWM\_SetCompareMode()", abilitabile soltanto abilitando PWM \> CMP Type 1 \> Firmware Control da schematico.
+- _Periodo_: in generale ogni stato sopra elencato possiede due componenti con periodi indipendenti. In particolar modo mi riferisco all'ultimo stato in cui si ha il RED CHANNEL a periodo T e duty cycle del 50% e il GREEN CHANNEL con periodo T/2 e duty cycle del 50%. Non ci fosse stata questa indipendenza tra i due stati avrei potuto addirittura utilizzare un solo PWM. La gestione del periodo è mediata dalla procedura "PWM\_WritePeriod()".
+- _Seconda parte dell'onda quadra_: Determina il duty cycle dell'onda quadra generata in ciascun channel. La gestione del duty cycle è mediata dalla procedura "PWM\_WriteCompare()".
+- _Tipologia di onda quadra_: in alcuni casi lo stato iniziale è HIGH, in altri è LOW. La gestione del tipo è mediata dalla procedura "PWM\_SetCompareMode()", abilitabile soltanto abilitando PWM \> CMP Type 1 \> Firmware Control da schematico.
 
 ### Struct: Color
 
