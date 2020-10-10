@@ -9,7 +9,7 @@
 
 static void RGBLed_WriteRed(uint8_t red);
 static void RGBLed_WriteGreen(uint8_t green);
-static void period_Change(Color c);
+static void period_Change(Pattern c);
 
 void RGBLed_Start(){
     PWM_RED_Start();
@@ -21,7 +21,7 @@ void RGBLed_Stop(){
     PWM_GREEN_Stop();
 }
 
-void RGBLed_WriteColor(Color c){
+void RGBLed_WritePattern(Pattern c){
     // IMPOSTO LA TIPOLOGIA DI ONDA QUADRA (DISCENDENTE O ASCENDENTE)
     PWM_RED_SetCompareMode(c.cmpmoder);
     PWM_GREEN_SetCompareMode(c.cmpmodeg);
@@ -43,7 +43,7 @@ void RGBLed_WriteGreen(uint8_t green){
     PWM_GREEN_WriteCompare(green);
 }
 
-void period_Change(Color c){
+void period_Change(Pattern c){
     // CAMBIA DINAMICAMENTE IL DELAY IN BASE ALLO STATO.
     if(state&&!isPeriodChanged) period=250;        // SE SPENTO -> DELAY RIDOTTO
     else period=((float)c.periodR/PWMCLK)*1000;    // FORMULA PER CALCOLARE IL DELAY

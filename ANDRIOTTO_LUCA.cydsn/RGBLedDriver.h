@@ -21,7 +21,7 @@
         uint8 cmpmodeg;     // TIPO DI ONDA QUADRA PER GREEN CHANNEL
         uint8_t periodR;    // PERIODO ONDA QUADRA PER RED CHANNEL
         uint8_t periodG;    // PERIODO ONDA QUADRA PER GREEN CHANNEL
-    } Color;
+    } Pattern;
     
     
     // DICHIARAZIONI FUNZIONI
@@ -29,7 +29,7 @@
     
     void RGBLed_Stop();
     
-    void RGBLed_WriteColor(Color c);
+    void RGBLed_WritePattern(Pattern c);
     uint8_t state,isPeriodChanged;
     uint16_t period;
 #endif

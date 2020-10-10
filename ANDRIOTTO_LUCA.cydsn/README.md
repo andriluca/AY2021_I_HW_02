@@ -26,12 +26,12 @@ _NB_: Utilizzando la configurazione riportata nello schematico il colore Orange 
 
 In particolare è stato utilizzato un evento hardware associato al segnale, opportunamente filtrato dal Debouncer Software, pressione del pulsante (collegato in modalità PULL-UP resistivo).
 La pressione incrementa un indicatore di stato (chiamato "state") in un intervallo da 0 a 6, per selezionare il pattern di colori da eseguire.
-I dati relativi alla collezione dei vari stati sono memorizzati in un array di tipo Color, la cui definizione è riportata in "RGBLedDriver.h".
+I dati relativi alla collezione dei vari stati sono memorizzati in un array di tipo Pattern, la cui definizione è riportata in "RGBLedDriver.h".
 In questo modo lo stato aggiornato dall'ISR punta sequenzialmente ai dati contenuti nell'array.
 
 ## PWM: Gestione accensione/spegnimento LED RGB
 
-La gestione dei colori è stata la parte più complessa da realizzare.
+La gestione dell'esecuzione dei pattern di colori è stata la parte più complessa da realizzare.
 Sono stati utilizzati due PWM connessi, rispettivamente, ai due catodi del LED RGB.
 La modulazione delle onde quadre che questi devono generare ha tenuto conto delle seguenti considerazioni:
 
@@ -39,9 +39,9 @@ La modulazione delle onde quadre che questi devono generare ha tenuto conto dell
 - _Seconda parte dell'onda quadra_: Determina il duty cycle dell'onda quadra generata in ciascun channel. La gestione del duty cycle è mediata dalla procedura "PWM\_WriteCompare()".
 - _Tipologia di onda quadra_: in alcuni casi lo stato iniziale è HIGH, in altri è LOW. La gestione del tipo è mediata dalla procedura "PWM\_SetCompareMode()", abilitabile soltanto abilitando PWM \> CMP Type 1 \> Firmware Control da schematico.
 
-### Struct: Color
+### Struct: Pattern
 
-La struttura dei colori tiene conto di ciò per entrambi i colori, quindi ciascun colore dispone di sei attributi in totale.
+La struttura dei pattern di colori tiene conto di ciò per entrambi i channel, quindi ciascun pattern dispone di sei attributi in totale.
 
 ## Delay
 

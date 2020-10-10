@@ -14,10 +14,10 @@ int main(void){
     state=INITIALSTATE;     // INIZIALIZZAZIONE VARIABILE GLOBALE DI STATO
     RGBLed_Start();         // INIZIALIZZAZIONE PWM LED
     isr_SW_StartEx(SW_ISR); // INIZIALIZZAZIONE ISR SU SWITCH
-    
+
     for(;;){
         // RIPETIZIONE PATTERN SCELTO
-        RGBLed_WriteColor(color[state]);
-        CyDelay(period);    
+        RGBLed_WritePattern(pattern[state]);
+        CyDelay(period);
     }
 }
