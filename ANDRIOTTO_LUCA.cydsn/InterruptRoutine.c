@@ -4,7 +4,6 @@
  *
  * ========================================
 */
-#include "RGBLedDriver.h"
 #include "InterruptRoutine.h"
 
 CY_ISR_PROTO(SW_ISR){

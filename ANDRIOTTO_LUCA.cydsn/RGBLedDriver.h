@@ -30,6 +30,7 @@
     void RGBLed_Stop();
     
     void RGBLed_WritePattern(Pattern c);
-    uint8_t state,isPeriodChanged;
-    uint16_t period;
+    uint8_t state;              // LA POSIZIONE O IL NUMERO DEL PATTERN ATTUALE.
+    uint8_t isPeriodChanged;    // INDICA SE IL PATTERN è CAMBIATO
+    uint16_t period;            // VALORE DEL PERIODO DA CONSIDERARE NEL MAIN
 #endif
