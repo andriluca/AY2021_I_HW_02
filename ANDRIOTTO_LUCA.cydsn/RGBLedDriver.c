@@ -24,6 +24,8 @@ void RGBLed_Stop(){
 }
 
 void RGBLed_WritePattern(Pattern c){
+    // INIZIALIZZAZIONE STATO PRESSIONE
+    isButtonPressed=0;
     // INIZIALIZZAZIONE DEL PERIODO DEI PWM
     RGBLed_PeriodInit(c);
     // IMPOSTAZIONE DEL DELAY
@@ -45,9 +47,8 @@ void RGBLed_WriteGreen(uint8_t green){
 
 void RGBLed_DelayChange(Pattern c){
     // CAMBIA DINAMICAMENTE IL DELAY IN BASE ALLO STATO.
-    if(state&&!isPeriodChanged) period=50;         // SE SPENTO -> DELAY RIDOTTO
-    else period=((float)c.periodR/PWMCLK)*1000;    // FORMULA PER CALCOLARE IL DELAY
-    isPeriodChanged=1;
+    if(!state) period=50;                          // SE ACCESO -> DELAY RIDOTTO
+    else period=((float)c.periodR/PWMCLK)*1000;    // FORMULA PER CALCOLARE IL DELAY NEGLI ALTRI CASI
 }
 
 void RGBLed_PeriodInit(Pattern c){

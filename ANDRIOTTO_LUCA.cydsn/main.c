@@ -17,12 +17,11 @@ int main(void){
         // RIPETIZIONE PATTERN SCELTO
         RGBLed_WritePattern(pattern[state]);
         CyDelay(period);
-        
         // TRANSIZIONE DA UNA CONFIGURAZIONE ALL'ALTRA
-        if(!isPeriodChanged){
-           // SPEGNIMENTO MOMENTANEO PER AGEVOLARE LA DISTINZIONE DEGLI STATI
-           RGBLed_WritePattern(SWITCHEDOFF);
-           CyDelay(300);
+        if(isButtonPressed){
+            // SPEGNIMENTO MOMENTANEO PER AGEVOLARE LA DISTINZIONE DEGLI STATI
+            RGBLed_WritePattern(SWITCHEDOFF);
+            CyDelay(250);
         }
     }
 }
